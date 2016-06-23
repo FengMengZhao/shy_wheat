@@ -1003,7 +1003,7 @@ h(n) = log1 + log2 + log3 + ... + logn = log(n!) = Θ(nlogn)，对数级数
 		static void bubbleSortImpro(int[] A, int lo, int hi){
 			boolean sorted = false ;
 			while(sorted = !sorted){
-				for(int i=0; i<hi-1; i++){
+				for(int i=lo; i<hi-1; i++){
 					if(A[i] > A[i+1]){
 						int temp = A[i] ;
 						A[i] = A[i+1] ;

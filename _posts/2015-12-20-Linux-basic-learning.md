@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Linux basic leaning
+title: Linux 基础 
 categories: 技术 OS 笔记
 tags: linux 域名解析 网卡配置 alternatives
 ---
