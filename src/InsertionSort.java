@@ -18,8 +18,25 @@ public class InsertionSort{
              }
         }
     }
+
+    public static void insertionSort_v2(int[] array, int lo, int hi){
+        int current ;
+        int pos ;
+        int insert_value ;
+        for(current = lo + 1; current < hi; current ++){
+            pos = current - 1 ;
+            insert_value = array[current] ;
+            while(pos >= lo && insert_value < array[pos]){
+                array[pos + 1] = array[pos] ;
+                pos -- ;
+            }
+            array[pos + 1]  = insert_value ;
+        }
+    }
+
     public static void main(String args[]){
         Random rnd = new Random() ;
+        /*
         FixedVector fvec = new FixedVector() ;
         fvec.append(rnd.nextInt(10)) ;
         fvec.append(rnd.nextInt(10)) ;
@@ -31,11 +48,14 @@ public class InsertionSort{
         fvec.append(rnd.nextInt(10)) ;
         fvec.append(rnd.nextInt(10)) ;
         fvec.append(rnd.nextInt(10)) ;
-        
-
-        insertionSort(fvec) ;
-        for(int i=0; i<fvec.size(); i++)
-            System.out.print(fvec.elementAt(i) + "\t") ;
+        */
+        int[] array = new int[10] ;
+        for(int i = 0; i<array.length; i++)
+            array[i] = rnd.nextInt(10) ;
+        //insertionSort(fvec) ;
+        insertionSort_v2(array, 0, array.length) ;
+        for(int i : array)
+            System.out.print(i + "\t") ;
     }
 }
 

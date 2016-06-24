@@ -5,6 +5,25 @@ categories: 技术 数据结构 算法 笔记
 tags: 可视化 UML EnterpriseArchitect
 ---
 
+目录
+
+- [0 前言](#0)
+- [1 Vector(array-based)](#1)
+- [2 Heap(array-based)](#2)
+- [3 抽象化Vector、Heap](#3)
+- [4 Stack(sequential-based, single link)](#4)
+- [5 Queue(sequential-based, double link)](#5)
+- [6 Deque(Sequential-based, double link)](#6)
+- [7 抽象化Stack、Queue、Deque](#7)
+- [8 抽象化ArrayContainer、LinearLikedContainer](#8)
+- [9 完全抽象化(ArrayContainer、LinearLikedContainerinear、TreeContainer](#9)
+- [10 GeneralBinaryTree(sequential-based,tree link)](#10)
+- [11 BinarySearchTree(sequential-based,tree link)](#11)
+
+---
+
+<h3 id="0">0 前言</h3>
+
 ### 跟着我，一步一个脚印，学习数据结构与算法 
 
 从底层实现是数组的**Vector、Heap**到底层实现是链表的**Stack、Queue、Deque、BinaryTree、BinarySearchTree**，一步一步用源代码解开数据结构神秘的面纱
@@ -44,7 +63,7 @@ tags: 可视化 UML EnterpriseArchitect
 
 ---
 
-#### Vector(array-based)
+<h3 id="1">1 Vector(array-based)</h3>
 
 ![Vector](../image/dynamic_fixed_vector.png "Vector")
 
@@ -78,7 +97,7 @@ tags: 可视化 UML EnterpriseArchitect
 
 ---
 
-#### Heap(array-based)
+<h3 id="2">2 Heap(array-based)</h3>
 
 ![Heap](../image/max_min_heap.png)
 
@@ -117,7 +136,7 @@ tags: 可视化 UML EnterpriseArchitect
 
 ---
 
-#### 抽象Vector和Heap为ArrayContainer
+<h3 id="3">3 抽象Vector和Heap为ArrayContainer</h3>
 
 Vector和Heap都是array-based，因此我们可以将二者抽象为**ArrayContainer**
 
@@ -127,7 +146,7 @@ Vector和Heap都是array-based，因此我们可以将二者抽象为**ArrayCont
 
 ---
 
-#### Stack(sequential-based, single lined-list)
+<h3 id="4">4 Stack(sequential-based, single lined-list)</h3>
 
 ![Stack](../image/stack.png)
 
@@ -176,7 +195,7 @@ Vector和Heap都是array-based，因此我们可以将二者抽象为**ArrayCont
 
 ---
 
-#### Queue(sequential-based, double linked-list)
+<h3 id="5">5 Queue(sequential-based, double linked-list)</h3>
 
 ![Queue](../image/queue.png)
 
@@ -212,7 +231,7 @@ Vector和Heap都是array-based，因此我们可以将二者抽象为**ArrayCont
 
 ---
 
-#### Deque(sequential-based, double linked-list)
+<h3 id="6">6 Deque(sequential-based, double linked-list)</h3>
 
 ![Deque](../image/deque_extends_queue.png)
 
@@ -241,19 +260,19 @@ Vector和Heap都是array-based，因此我们可以将二者抽象为**ArrayCont
 
 ---
 
-#### 抽象化Stack、Queue和Deque为LinearLinkedContainer
+<h3 id="7">7 抽象化Stack、Queue和Deque为LinearLinkedContainer</h3>
 
 ![linear linked container](../image/linear_linked_container.png)
 
 ---
 
-#### 抽象化LinkedContainer和ArrayContainer为Container
+<h3 id="8">8 抽象化LinkedContainer和ArrayContainer为Container</h3>
 
 ![array-container linear linked-container](../image/array_linear_linked_container.png)
 
 ---
 
-#### 进一步抽象化Container
+<h3 id="9">9 进一步抽象化Container</h3>
 
 接下来我们要讲解General Binary Tree，由于General Binary Tree是Linked Container，但是不是Linear Linked Container，所以我么有必要将我们的UML模型记性进一步的抽象。
 
@@ -305,7 +324,7 @@ Vector和Heap都是array-based，因此我们可以将二者抽象为**ArrayCont
 
 ---
 
-#### General Binary Tree
+<h3 id="10">10 General Binary Tree</h3>
 
 ![binary tree](../image/binary_tree.png)
 
@@ -333,7 +352,7 @@ Vector和Heap都是array-based，因此我们可以将二者抽象为**ArrayCont
 
 ---
 
-#### BinarySearchTree(BST)
+<h3 id="11">11 BinarySearchTree(BST)</h3>
 
 ![binary search tree](../image/binary_search_tree.png)
 
