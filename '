@@ -35,12 +35,6 @@ tags: 二进制 十六进制 数据表示 IEEE-754 2’s-complement 1's-compleme
 - [5 字符编码](#5)
 
     - [5.1 7-bit ASCII Code(aka US-ASCII, ISO/IEC 646, ITU-T T.50)](#5.1)
-    - [5.2 8-bit Latin-1(aka ISO/IEC 8859-1)](#5.2)
-    - [5.3 US-ASCII(ASCII Extensions)的其他8-bit扩展](#5.3)
-    - [5.4 Unicode(aka ISO/IEC 10646 Universal Character Set)](#5.4)
-    - [5.5 UTF-8(Unicode Transformation Format - 8-bit)](#5.5)
-    - [5.6 多字节型字符表示的文档文件](#5.6)
-    - [5.7 完档文件的格式](#5.7)
 
 ---
 
@@ -338,88 +332,8 @@ zero不能用归一化的形式来表示，必须用非归一化的形式E=0，F
 
 ASCII(American Standard Code for Information Interchange)是比较早的一种字符表示方式。现在的ASCII已经扩展到了8-bit，这样能够更好的利用计算机8-bit作为一个memory address的特点
 
-**ASCII的可打印字符表：**
+ASCII的可打印字符表：
 
 ![ASCII Code Printable](../image/Ascii_code_printable.png)
 
-- '0' to '9': 30H-39H(48D-57D)，中间没用gap
-- 'A' to 'Z': 41H-5AH(65D-90D)，中间没有gap
-- 'a' to 'z': 61H-7AH(97D-122D)，中间没有gap
-
-> ASCII共95个可打印字符
-
-**ASCII不可打印字符表：**
-
-![ASCII Code Unprintable](../image/Ascii_code_unprintable.png)
-
-<h4 id="5.2">5.2 8-bit Latin-1(aka ISO/IEC 8859-1)</h4>
-
-ISO/IEC-8859是西方语言的标准。ISO/IEC 8859-1又称为Latin alphabet No.1或者是Latin-1，Latin-1共有191个可打印字符，向后兼容ASCII编码。主要覆盖的语言有：英语、德语、意大利语、葡萄牙语和西班牙语
-
-**Latin-1可打印字符表(省略ASCII可打印字符)：**
-
-![Latin No1 Printable](../image/Latin_no1_printable.png)
-
-> ISO/IEC=8895共分为16个部分，最常用的是Part 1，Part 2主要覆盖中欧(波兰、捷克、匈牙利等)，Part 3主要覆盖南欧(土耳其等)，Part 4主要覆盖北欧(爱沙尼亚、拉脱维亚等)，Part 5主要是为西里尔字母，Part 7主要是为希腊，Part8主要是为希伯来人(以色列)，Part 9主要是为土耳其，Part 10主要是为北欧人，Part 11主要是为泰国，Part 12已经被抛弃，Part 13主要是为波罗的海沿岸，Part 14主要是为赛尔特语，Part 15主要是为法国、芬兰等，Part 16主要是为欧洲东南部。
-
-<h4 id="5.3">5.3 US-ASCII(ASCII Extensions)的其他8-bit扩展</h4>
-
-ANSI(American National Standard Institude)(aka Windowns-1252)是8-bit的字符集，也是Latin-1的一个超集，它定义了128D(80H)到159D(9FH)之间的字符为"Displayable Character"，例如："smart" 单引号等
-
-常常出现的问题是：在web浏览器中，我们使用的微软的一些产品所有的引号和单引号都被制作成"smart"，但是文档的字符集是Latin-1，所以会出现一部分乱码的现象。
-
-**Windowns-1252部分字符表：**
-
-![Windows Code 1252](../image/Windows_code_1252.png)
-
-<h4 id="5.4">5.4 Unicode(aka ISO/IEC 10646 Universal Character Set)</h4>
-
-Unicode试图提供一个标准的字符集，这个字符集同样是国际化的、有效的、统一的和不易混淆的。
-
-Unicode向后兼容7-bit ASCII 和8-bit Latin-1。也就是说开始的126个字符和US-ASIII是一样的，开始的256个字符和Latin-1是一样的
-
-Unicode最初使用16 bits(称之为UCS-2或者Unicode Character Set-2)，能够表示65,536个字符。后来Unicode扩展到目前的21 bits(能够表达两百多万个字符)。65536个字符我们称之为Basic Multilingual Plane(BMP)，这6万多个字符之外的字符称之为Supplementary Characters，这些字符并不常用。
-
-Unicode有两种编码的方式：
-
-- UCS-2(Universal Character set - 2 Byte): 用16 bits来包含BMP(65536个字符)，UCS-2已经过时了。
-- UCS-4(Universal Character set - 4 Byte): 包含了BMP和Supplementary Characters。
-
-![UCS-2](../image/Ucs_2.png)
-
-<h4 id="5.5">5.5 UTF-8(Unicode Transformation Format - 8-bit)</h4>
-
-Unicode效率非常低，因为如果一个文档大部分包含ASCII字符，每一个字符需要用2个或者4个字节来表示，就造成了大量的空间浪费。因此UTF-8使用可变字节表示的编码方式，用1-4个字节来表示一个字符。
-
-Unicode和UTF-8之间的转化：
-
-![Unicode to UTF-8](../image/Utf_8_to_unicode.png)
-
-> UTF-8是用1-3个字节来表示BMP(16-bit)，并且用4-bit来表示Supplementary Characters(21-bit)
-
-> 128 ACSII字符(拉丁字符、数字和标点)使用1个Byte；扩展的拉丁字符、希腊字符、亚美尼亚语、希伯来语、阿拉伯语使用2个字节；中文、日本语和韩语(CJK)用3个字节。
-
-<h4 id="5.6">5.6 多字节型字符表示的文档文件</h4>
-
-**BOM(Byte Order Mark)**
-
-BOM用来标记big-endian储存和small-endian储存。当BOM是`FE FFH`时候，表明文档是Big-Endian储存的；当BOM是`FF FEH`时候，表明文档是Small-Endian储存的
-
-UTF-8的文档默认是Big-Endian储存的。然而在Windows系统中，BOM作为最开始的字节加入文件，在UTF-8的文档中加入BOM是不推荐的，这样容易在其他的操作系统中产生混乱，Windows将`FE FFH`编码为`EF BB BF`插入文件的头(.txt文件的UTF-8格式默认含有BOM)，在Windows下最好选择没有BOM的UTF-8文件(可以采用其他字符编辑器Notepad)
-
-<h4 id="5.7">5.7 文档文件的格式</h4>
-
-- Windowns/DOS 使用`0D0AH(CR+LF or \r\n)`作为EOL(End Of Line)
-- Unix和Mac使用`0AH(LF or \n)`作为EOL
-
----
-
-### Referece:
-
-- [http://www.ntu.edu.sg/home/ehchua/programming/java/datarepresentation.html](http://www.ntu.edu.sg/home/ehchua/programming/java/datarepresentation.html "参考文章")
-
----
-
-<center>End</center>
-
----
+- '0' to '9': 30H-39H(48D-57D)
